@@ -25,8 +25,35 @@ function operate(){
     }
 }
 
-let btn = document.querySelector('#one');
+const numbers = document.querySelector('.numbers');
+let displayValue = ""; 
 
-btn.addEventListener('click',(event) => {
-    console.log('clicked');
+numbers.addEventListener('click', (event) => {
+    let target = event.target;
+    
+    switch(target.id) {
+        case "one": displayValue += "1";
+        break;
+        case "two": displayValue += "2";
+        break;
+        case "three": displayValue += "3";
+        break;
+        case "four": displayValue += "4";
+        break;
+        case "five": displayValue += "5";
+        break;
+        case "six": displayValue += "6";
+        break;
+        case "seven": displayValue += "7";
+        break;
+        case "eight": displayValue += "8";
+        break;
+        case "nine": displayValue += "9";
+        break;
+    }
+
+    const display = document.querySelector('.display');
+
+    display.textContent = displayValue;
 });
+
