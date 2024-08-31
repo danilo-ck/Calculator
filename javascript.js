@@ -14,46 +14,115 @@ function divide(dividend, divisor){
     return dividend / divisor;
 }
 
-let firstNumber, operator, secondNumber;
-
-function operate(){
+function operate(operator, num1, num2){
     switch(operator){
-        case "+": return add(firstNumber, secondNumber);
-        case "-": return subtract(firstNumber, secondNumber);
-        case "*": return multiply(firstNumber, secondNumber);
-        case "/": return divide(firstNumber, secondNumber);
+        case "+": return add(num1, num2);
+        case "-": return subtract(num1, num2);
+        case "*": return multiply(num1, num2);
+        case "/": return divide(num1, num2);
     }
 }
 
+let displayValue = "0"; 
+let firstNumber = null;
+let firstOperator = null;
+let secondNumber = null;
+let secondOperator = null;
+let result = null;
+
 const numbers = document.querySelector('.numbers');
-let displayValue = ""; 
+
+
+const display = document.querySelector('.display');
+display.textContent = displayValue;
 
 numbers.addEventListener('click', (event) => {
     let target = event.target;
     
     switch(target.id) {
-        case "one": displayValue += "1";
+        case "zero": 
+            addToDisplay("0");
         break;
-        case "two": displayValue += "2";
+        case "one": 
+            addToDisplay("1");
         break;
-        case "three": displayValue += "3";
+        case "two": 
+            addToDisplay("2");
         break;
-        case "four": displayValue += "4";
+        case "three": 
+            addToDisplay("3");
         break;
-        case "five": displayValue += "5";
+        case "four": 
+            addToDisplay("4");
         break;
-        case "six": displayValue += "6";
+        case "five": 
+            addToDisplay("5");
         break;
-        case "seven": displayValue += "7";
+        case "six": 
+            addToDisplay("6");
         break;
-        case "eight": displayValue += "8";
+        case "seven": 
+            addToDisplay("7");
         break;
-        case "nine": displayValue += "9";
+        case "eight": 
+            addToDisplay("8");
+        break;
+        case "nine": 
+            addToDisplay("9");
         break;
     }
-
-    const display = document.querySelector('.display');
-
+    
     display.textContent = displayValue;
 });
 
+numbers.addEventListener('click', (event) => {
+    let target = event.target;
+
+    switch(target.id) {
+        case "plus": 
+            setOperator("+");
+        break;
+        case "minus": 
+            setOperator("-");
+        break;
+        case "times":
+            setOperator("*");
+        break;
+        case "divided":
+            setOperator("/");
+        break;
+        case "equal":
+            equalsTo();
+    }
+
+});
+
+
+function addToDisplay(number) {
+    if(firstNumber === null){
+        if(displayValue == "0" || displayValue == 0){
+            displayValue = number;
+        }else{
+            displayValue += number;
+        }
+    }else{
+        if(displayValue == firstNumber){
+            displayValue = number;
+        }else{
+            displayValue += number;
+        }
+    }
+}
+
+function setOperator(operator){
+    if(firstOperator === null){
+        firstNumber = Number(displayValue);
+        firstOperator = operator;
+    }
+}
+
+function equalsTo() {
+    secondNumber = Number(displayValue);
+    displayValue = operate(firstOperator, firstNumber, secondNumber);
+    display.textContent = displayValue;
+}
