@@ -11,7 +11,11 @@ function multiply(num1, num2){
 }
 
 function divide(dividend, divisor){
-    return dividend / divisor;
+    if(divisor === 0){
+        return "GOOD TRY!";
+    }else{
+        return dividend / divisor;
+    }
 }
 
 function operate(operator, num1, num2){
@@ -104,61 +108,67 @@ numbers.addEventListener('click', (event) => {
 
 
 function addToDisplay(number) {
-    if(firstNumber === null){
-        if(displayValue == "0" || displayValue == 0){
-            displayValue = number;
+    
+    if(displayValue != "GOOD TRY!"){
+        if(firstNumber === null){
+            if(displayValue == "0" || displayValue == 0){
+                displayValue = number;
+            }else{
+                displayValue += number;
+            }
         }else{
-            displayValue += number;
-        }
-    }else{
-        if(displayValue == firstNumber){
-            displayValue = number;
-        }else{
-            displayValue += number;
+            if(displayValue == firstNumber){
+                displayValue = number;
+            }else{
+                displayValue += number;
+            }
         }
     }
+
 }
 
 function setOperator(operator){
-    if(firstOperator === null){
-        firstNumber = Number(displayValue);
-        firstOperator = operator;
-    }else if(secondOperator === null){
-        secondNumber = Number(displayValue);
-        secondOperator = operator;
-        firstNumber = operate(firstOperator, firstNumber, secondNumber);
-        displayValue = firstNumber;
-        display.textContent = displayValue;
-    }else {
-        secondNumber = Number(displayValue);
-        firstOperator = operator;
-        firstNumber = operate(secondOperator, firstNumber, secondNumber);
-        secondOperator = null;
-        displayValue = firstNumber;
-        display.textContent = displayValue;
+    if(displayValue != "GOOD TRY!"){
+        if(firstOperator === null){
+            firstNumber = Number(displayValue);
+            firstOperator = operator;
+        }else if(secondOperator === null){
+            secondNumber = Number(displayValue);
+            secondOperator = operator;
+            firstNumber = operate(firstOperator, firstNumber, secondNumber);
+            displayValue = firstNumber;
+            display.textContent = displayValue;
+        }else {
+            secondNumber = Number(displayValue);
+            firstOperator = operator;
+            firstNumber = operate(secondOperator, firstNumber, secondNumber);
+            secondOperator = null;
+            displayValue = firstNumber;
+            display.textContent = displayValue;
+        }
     }
 }
 
 function equalsTo() {
-    if(secondOperator != null){
-        secondNumber = Number(displayValue);
-        displayValue = operate(secondOperator, firstNumber, secondNumber);
-        display.textContent = displayValue;
-        firstNumber = displayValue;
-        firstOperator = null;
-        secondNumber = null;
-        secondOperator = null;
-    }else if(firstOperator != null){
-        secondNumber = Number(displayValue);
-        displayValue = operate(firstOperator, firstNumber, secondNumber);
-        display.textContent = displayValue;
-        firstNumber = displayValue;
-        firstOperator = null;
-        secondNumber = null;
-        secondOperator = null;
-        //comprobar que pasa si le das a igual estando firstOperator en null al pulsar varios operadores seguidos
+    if(displayValue != "GOOD TRY!"){
+        if(secondOperator != null){
+            secondNumber = Number(displayValue);
+            displayValue = operate(secondOperator, firstNumber, secondNumber);
+            display.textContent = displayValue;
+            firstNumber = displayValue;
+            firstOperator = null;
+            secondNumber = null;
+            secondOperator = null;
+        }else if(firstOperator != null){
+            secondNumber = Number(displayValue);
+            displayValue = operate(firstOperator, firstNumber, secondNumber);
+            display.textContent = displayValue;
+            firstNumber = displayValue;
+            firstOperator = null;
+            secondNumber = null;
+            secondOperator = null;
+        }
     }
-
 }
 
 function clearAll(){
