@@ -76,6 +76,9 @@ numbers.addEventListener('click', (event) => {
         case "nine": 
             addToDisplay("9");
         break;
+        case "dot":
+            addToDisplay(".");
+        break;
     }
     
     display.textContent = showDisplay(displayValue);
@@ -110,17 +113,23 @@ numbers.addEventListener('click', (event) => {
 function addToDisplay(number) {
     
     if(displayValue != "GOOD TRY!"){
-        if(firstNumber === null){
-            if(displayValue == "0" || displayValue == 0){
-                displayValue = number;
-            }else{
+        if(number === "."){
+            if(!itsDecimal(displayValue)){
                 displayValue += number;
             }
         }else{
-            if(displayValue == firstNumber){
-                displayValue = number;
+            if(firstNumber === null){
+                if(displayValue === "0" || displayValue === 0){
+                    displayValue = number;
+                }else{
+                    displayValue += number;
+                }
             }else{
-                displayValue += number;
+                if(displayValue == firstNumber){
+                    displayValue = number;
+                }else{
+                    displayValue += number;
+                }
             }
         }
     }
@@ -186,4 +195,13 @@ function showDisplay(value){
         value = value.slice(0, 9);
     }
     return value;
+}
+
+function itsDecimal(value){
+    result = String(value).indexOf(".");
+    if(result === -1){
+        return false;
+    }else{
+        return true;
+    }
 }
