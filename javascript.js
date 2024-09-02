@@ -79,6 +79,9 @@ numbers.addEventListener('click', (event) => {
         case "dot":
             addToDisplay(".");
         break;
+        case "delete":
+            removeFromDisplay();
+        break;
     }
     
     display.textContent = showDisplay(displayValue);
@@ -105,6 +108,8 @@ numbers.addEventListener('click', (event) => {
         break;
         case "clear":
             clearAll();
+        break;
+        
     }
 
 });
@@ -125,7 +130,7 @@ function addToDisplay(number) {
                     displayValue += number;
                 }
             }else{
-                if(displayValue == firstNumber){
+                if(displayValue == firstNumber || displayValue === "0" || displayValue === 0){
                     displayValue = number;
                 }else{
                     displayValue += number;
@@ -134,6 +139,15 @@ function addToDisplay(number) {
         }
     }
 
+}
+
+function removeFromDisplay(){
+    let newValue = String(displayValue);
+    if(newValue.length === 1){
+        displayValue = "0";
+    }else{
+        displayValue = newValue.slice(0, (newValue.length - 1));
+    }
 }
 
 function setOperator(operator){
@@ -198,7 +212,7 @@ function showDisplay(value){
 }
 
 function itsDecimal(value){
-    result = String(value).indexOf(".");
+    let result = String(value).indexOf(".");
     if(result === -1){
         return false;
     }else{
