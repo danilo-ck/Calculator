@@ -40,6 +40,8 @@ body{
     font-size: 4em;
     padding: 10px;
     border: 2px solid #373A40;
+    height: 84px;
+    width: 310px;
 }
 
 .numbers {
