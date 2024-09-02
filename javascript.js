@@ -78,7 +78,7 @@ numbers.addEventListener('click', (event) => {
         break;
     }
     
-    display.textContent = displayValue;
+    display.textContent = showDisplay(displayValue);
 });
 
 numbers.addEventListener('click', (event) => {
@@ -137,14 +137,14 @@ function setOperator(operator){
             secondOperator = operator;
             firstNumber = operate(firstOperator, firstNumber, secondNumber);
             displayValue = firstNumber;
-            display.textContent = displayValue;
+            display.textContent = showDisplay(displayValue);
         }else {
             secondNumber = Number(displayValue);
             firstOperator = operator;
             firstNumber = operate(secondOperator, firstNumber, secondNumber);
             secondOperator = null;
             displayValue = firstNumber;
-            display.textContent = displayValue;
+            display.textContent = showDisplay(displayValue);
         }
     }
 }
@@ -154,7 +154,7 @@ function equalsTo() {
         if(secondOperator != null){
             secondNumber = Number(displayValue);
             displayValue = operate(secondOperator, firstNumber, secondNumber);
-            display.textContent = displayValue;
+            display.textContent = showDisplay(displayValue);
             firstNumber = displayValue;
             firstOperator = null;
             secondNumber = null;
@@ -162,7 +162,7 @@ function equalsTo() {
         }else if(firstOperator != null){
             secondNumber = Number(displayValue);
             displayValue = operate(firstOperator, firstNumber, secondNumber);
-            display.textContent = displayValue;
+            display.textContent = showDisplay(displayValue);
             firstNumber = displayValue;
             firstOperator = null;
             secondNumber = null;
@@ -177,5 +177,13 @@ function clearAll(){
     firstOperator = null;
     secondNumber = null;
     secondOperator = null;
-    display.textContent = displayValue;
+    display.textContent = showDisplay(displayValue);
+}
+
+function showDisplay(value){
+    value = String(value);
+    if(value.length > 9){
+        value = value.slice(0, 9);
+    }
+    return value;
 }
