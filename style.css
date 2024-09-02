@@ -14,7 +14,7 @@ body{
 
 .calculator-body {
     background: #686D76;
-    border: 4px solid midnightblue;
+    border: 4px solid #373A40;
     min-width: 370px;
     width: 370px;
     height: 520px;
@@ -39,6 +39,7 @@ body{
     justify-content: end;
     font-size: 4em;
     padding: 10px;
+    border: 2px solid #373A40;
 }
 
 .numbers {
@@ -53,9 +54,26 @@ body{
 button {
     height: 65px;
     width: 70px;
+    font-size:larger
 }
 
 #equal{
     flex-grow: 1;
-    background-color: aqua;
+    background-color: #50C4ED;
+}
+
+.operator{
+    background-color: #387ADF;
+}
+
+#clear {
+    background-color: #DC5F00;
+}
+
+#delete {
+    background-color: #FBA834;
+}
+
+.number {
+    background: #EEEEEE;
 }
