@@ -142,11 +142,13 @@ function addToDisplay(number) {
 }
 
 function removeFromDisplay(){
-    let newValue = String(displayValue);
-    if(newValue.length === 1){
-        displayValue = "0";
-    }else{
-        displayValue = newValue.slice(0, (newValue.length - 1));
+    if(displayValue != "GOOD TRY!"){
+        let newValue = String(displayValue);
+        if(newValue.length === 1){
+            displayValue = "0";
+        }else{
+            displayValue = newValue.slice(0, (newValue.length - 1));
+        }
     }
 }
 
