@@ -219,3 +219,57 @@ function itsDecimal(value){
         return true;
     }
 }
+
+window.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    switch(key) {
+        case "0": 
+            addToDisplay("0");
+        break;
+        case "1": 
+            addToDisplay("1");
+        break;
+        case "2": 
+            addToDisplay("2");
+        break;
+        case "3": 
+            addToDisplay("3");
+        break;
+        case "4": 
+            addToDisplay("4");
+        break;
+        case "5": 
+            addToDisplay("5");
+        break;
+        case "6": 
+            addToDisplay("6");
+        break;
+        case "7": 
+            addToDisplay("7");
+        break;
+        case "8": 
+            addToDisplay("8");
+        break;
+        case "9": 
+            addToDisplay("9");
+        break;
+        case ".":
+            addToDisplay(".");
+        break;
+        case "Backspace":
+            removeFromDisplay();
+        break;
+        case "=":
+            equalsTo();
+        break;
+        case "/":
+            setOperator("/");
+        break;
+        case "-": 
+            setOperator("-");
+        break;
+    }
+    
+    display.textContent = showDisplay(displayValue);
+});
